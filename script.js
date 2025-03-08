@@ -4,23 +4,23 @@ document.getElementById("startButton").addEventListener("click", function() {
 
     // Запуск анимации цветка
     let flower = document.getElementById("flower");
-    flower.style.display = "block"; // Показываем SVG
-    flower.classList.add("animate"); // Добавляем класс анимации
+    flower.style.display = "block";
+    flower.classList.add("animate");
 
-    // Прячем текст перед началом анимации
+    // Прячем текст перед анимацией
     let message = document.getElementById("message");
     message.style.opacity = "0";
-    message.style.transform = "scale(0.5)"; // Скрываем текст
+    message.style.transform = "scale(0.5)";
 
     // Обход блокировки вибрации (срабатывает после клика)
-    requestAnimationFrame(() => {
-        if (navigator.vibrate) {
-            navigator.vibrate([3000, 500, 1000]); // Вибрация на время анимации
-        }
-    });
-
-    // Показываем текст через 4 секунды (после завершения анимации цветка)
     setTimeout(() => {
-        message.classList.add("animate-text"); // Добавляем анимацию текста
+        if (navigator.vibrate) {
+            navigator.vibrate([500, 300, 500, 300]); // Два коротких толчка с паузами
+        }
+    }, 100); // Минимальная задержка, чтобы браузер принял действие
+
+    // Показываем текст через 4 секунды
+    setTimeout(() => {
+        message.classList.add("animate-text");
     }, 4000);
 });
